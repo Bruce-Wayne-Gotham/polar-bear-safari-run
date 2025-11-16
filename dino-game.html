@@ -215,6 +215,20 @@
             box-shadow: 14px 0 0 #8d939a, 28px 0 0 #8d939a;
         }
 
+        .animal-fox {
+            background: url('images/fox.png') no-repeat center;
+            background-size: contain;
+            width: 50px;
+            height: 40px;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .animal-fox::before,
+        .animal-fox::after {
+            display: none;
+        }
+
         #lionEnd {
             position: absolute;
             bottom: 18px;
@@ -444,7 +458,7 @@
                 if (this.isGameOver) return;
                 
                 const obstacle = document.createElement('div');
-                const animalTypes = ['animal-elephant', 'animal-dolphin', 'animal-giraffe', 'animal-rhino'];
+                const animalTypes = ['animal-elephant', 'animal-dolphin', 'animal-giraffe', 'animal-rhino', 'animal-fox'];
                 const randomAnimal = animalTypes[Math.floor(Math.random() * animalTypes.length)];
                 obstacle.className = `obstacle ${randomAnimal}`;
                 obstacle.dataset.right = '-50';
