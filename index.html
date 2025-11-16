@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinosaur Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>Dinosaur Game</h1>
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="high-score">High Score: <span id="high-score">0</span></div>
+        </div>
+        
+        <div class="game-area" id="game-area">
+            <div class="ground"></div>
+            <div class="dinosaur" id="dinosaur"></div>
+            <div class="obstacle" id="obstacle"></div>
+            <div class="cloud" id="cloud"></div>
+        </div>
+        
+        <div class="game-controls">
+            <div class="instructions">
+                Press SPACE or click to jump
+            </div>
+            <button id="restart-btn" class="restart-btn">Restart Game</button>
+        </div>
+        
+        <div class="game-over" id="game-over">
+            <h2>Game Over!</h2>
+            <p>Your score: <span id="final-score">0</span></p>
+            <button id="game-over-restart" class="restart-btn">Play Again</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
