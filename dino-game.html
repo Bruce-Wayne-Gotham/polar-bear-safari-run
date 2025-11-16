@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Bear & Safari Run</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #b8e6f5 0%, #87CEEB 40%, #e0f2f7 70%, #ffffff 100%);
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(255,255,255,0.8) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(220,240,255,0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(200,230,250,0.4) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 800px;
+            height: 200px;
+            background: linear-gradient(to bottom, rgba(184, 230, 245, 0.3) 0%, rgba(135, 206, 235, 0.2) 100%);
+            border: 2px solid #a0c8d8;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #ground {
+            position: absolute;
+            bottom: 0;
+            width: 200%;
+            height: 20px;
+            background: linear-gradient(to bottom, #e8f4f8 0%, #d0e8f0 50%, #b8dce8 100%);
+            border-top: 2px solid #a0c8d8;
+        }
+
+        @keyframes slothStride {
+            0%, 100% {
+                transform: scaleX(-1) translateY(0);
+            }
+            50% {
+                transform: scaleX(-1) translateY(-6px);
+            }
+        }
+
+        @keyframes slothLimbs {
+            0%, 100% {
+                transform: rotate(4deg);
+            }
+            50% {
+                transform: rotate(-6deg);
+            }
+        }
+
+        #dinosaur {
+            position: absolute;
+            bottom: 20px;
+            left: 50px;
+            width: 120px;
+            height: 95px;
+            background: url('images/polar-bear.png') no-repeat center;
+            background-size: contain;
+            transform: scaleX(-1);
+            transition: bottom 0.3s ease;
+            animation: slothStride 0.5s ease-in-out infinite;
+        }
+
+        #dinosaur::before,
+        #dinosaur::after {
+            display: none;
+        }
+
+        #dinosaur.jumping {
+            bottom: 150px;
+        }
+
+        @keyframes lionBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes lionPaws {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(5px);
+            }
+        }
+
+        .obstacle {
+            position: absolute;
+            bottom: 18px;
+            right: -50px;
+            width: 46px;
+            height: 38px;
+            border-radius: 20px 34px 22px 18px;
+            box-shadow: inset -4px 0 0 rgba(0, 0, 0, 0.25);
+            animation: lionBounce 0.65s ease-in-out infinite;
+        }
+
+        .obstacle::before,
+        .obstacle::after {
+            content: '';
+            position: absolute;
+        }
+
+        .obstacle::before {
+            top: -16px;
+            left: 14px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .obstacle::after {
+            bottom: -10px;
+            left: 8px;
+            width: 10px;
+            height: 18px;
+            border-radius: 6px;
+            animation: lionPaws 0.65s ease-in-out infinite;
+        }
+
+        .animal-elephant {
+            background: linear-gradient(to right, #c0c7d6 0%, #a0a7b8 70%, #8a91a3 100%);
+        }
+
+        .animal-elephant::before {
+            background:
+                radial-gradient(circle at 30% 40%, #ffffff 0 4px, transparent 4px),
+                radial-gradient(circle at 70% 40%, #ffffff 0 4px, transparent 4px),
+                radial-gradient(circle at 30% 40%, #2f2f2f 0 2px, transparent 2px),
+                radial-gradient(circle at 70% 40%, #2f2f2f 0 2px, transparent 2px),
+                radial-gradient(circle at 50% 70%, #5b5b5b 0 4px, transparent 4px),
+                #b7becf;
+        }
+
+        .animal-elephant::after {
+            background: #b7becf;
+            box-shadow: 14px 0 0 #b7becf, 28px 0 0 #b7becf;
+        }
+
+        .animal-dolphin {
+            background: linear-gradient(to right, #6fb6ff 0%, #4c9ddf 70%, #2c7ec7 100%);
+        }
+
+        .animal-dolphin::before {
+            background:
+                radial-gradient(circle at 40% 40%, #ffffff 0 3px, transparent 3px),
+                radial-gradient(circle at 70% 40%, #ffffff 0 3px, transparent 3px),
+                radial-gradient(circle at 50% 70%, #1f4e78 0 3px, transparent 3px),
+                #5aa7f4;
+            border-radius: 40% 40% 50% 50%;
+        }
+
+        .animal-dolphin::after {
+            background: #5aa7f4;
+            box-shadow: 12px 0 0 #5aa7f4, 24px 0 0 #5aa7f4;
+        }
+
+        .animal-giraffe {
+            background:
+                linear-gradient(45deg, #f6c85f 25%, #c07a2d 25% 50%, #f6c85f 50% 75%, #c07a2d 75%)
+                0 0/16px 16px;
+        }
+
+        .animal-giraffe::before {
+            background:
+                radial-gradient(circle at 35% 40%, #3b250f 0 3px, transparent 3px),
+                radial-gradient(circle at 65% 40%, #3b250f 0 3px, transparent 3px),
+                radial-gradient(circle at 50% 70%, #3b250f 0 3px, transparent 3px),
+                #f5d791;
+        }
+
+        .animal-giraffe::after {
+            background: #f5d791;
+            box-shadow: 14px 0 0 #f5d791, 28px 0 0 #f5d791;
+        }
+
+        .animal-rhino {
+            background: linear-gradient(to right, #9ea3a8 0%, #7c8084 70%, #5f6265 100%);
+        }
+
+        .animal-rhino::before {
+            background:
+                radial-gradient(circle at 30% 40%, #e3e5e8 0 4px, transparent 4px),
+                radial-gradient(circle at 70% 40%, #e3e5e8 0 4px, transparent 4px),
+                radial-gradient(circle at 50% 70%, #303437 0 4px, transparent 4px),
+                #8d939a;
+        }
+
+        .animal-rhino::after {
+            background: #8d939a;
+            box-shadow: 14px 0 0 #8d939a, 28px 0 0 #8d939a;
+        }
+
+        #lionEnd {
+            position: absolute;
+            bottom: 18px;
+            right: -120px;
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(to right, #d4a574 0%, #c19660 50%, #b8874c 100%);
+            border-radius: 40px 50px 35px 30px;
+            box-shadow: inset -6px 0 0 rgba(0, 0, 0, 0.3);
+            display: none;
+            animation: lionBounce 0.65s ease-in-out infinite;
+        }
+
+        #lionEnd::before {
+            content: '';
+            position: absolute;
+            top: -24px;
+            left: 26px;
+            width: 40px;
+            height: 40px;
+            background:
+                radial-gradient(circle at 30% 40%, #000000 0 4px, transparent 4px),
+                radial-gradient(circle at 70% 40%, #000000 0 4px, transparent 4px),
+                radial-gradient(circle at 50% 70%, #000000 0 4px, transparent 4px),
+                radial-gradient(circle at 50% 50%, #f3d4a0 0 60%, #b45309 61%, #b45309 100%);
+            border-radius: 50%;
+        }
+
+        #lionEnd::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 12px;
+            width: 14px;
+            height: 20px;
+            background: #b45309;
+            border-radius: 8px;
+            box-shadow: 20px 0 0 #b45309, 40px 0 0 #b45309;
+        }
+
+        @keyframes lionChase {
+            0% {
+                right: -120px;
+            }
+            100% {
+                right: 900px;
+            }
+        }
+
+        #score {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: none;
+        }
+
+        #gameOver h2 {
+            margin: 0 0 20px 0;
+            color: #333;
+        }
+
+        #restartBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #538D22;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+        }
+
+        #restartBtn:hover {
+            background: #4A7A1E;
+        }
+
+        #startScreen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        #startScreen h1 {
+            margin: 0 0 20px 0;
+            color: #333;
+        }
+
+        #startBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #538D22;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+        }
+
+        #startBtn:hover {
+            background: #4A7A1E;
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .cloud::before {
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            left: 10px;
+        }
+
+        .cloud::after {
+            width: 35px;
+            height: 35px;
+            top: -15px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="ground"></div>
+        <div id="dinosaur"></div>
+        <div id="score">Score: 0</div>
+        <div id="lionEnd"></div>
+        
+        <div id="startScreen">
+            <h1>White Bear &amp; Safari Run</h1>
+            <p>Dodge the animals, but the lion ends the run!</p>
+            <button id="startBtn">Start Game</button>
+        </div>
+        
+        <div id="gameOver">
+            <h2>Game Over!</h2>
+            <p id="finalScore">Score: 0</p>
+            <button id="restartBtn">Restart</button>
+        </div>
+    </div>
+
+    <script>
+        class DinosaurGame {
+            constructor() {
+                this.dinosaur = document.getElementById('dinosaur');
+                this.gameContainer = document.getElementById('gameContainer');
+                this.scoreElement = document.getElementById('score');
+                this.gameOverScreen = document.getElementById('gameOver');
+                this.finalScoreElement = document.getElementById('finalScore');
+                this.startScreen = document.getElementById('startScreen');
+                this.startBtn = document.getElementById('startBtn');
+                this.restartBtn = document.getElementById('restartBtn');
+                this.lionElement = document.getElementById('lionEnd');
+                
+                this.isJumping = false;
+                this.isGameOver = false;
+                this.score = 0;
+                this.gameSpeed = 3.5;
+                this.obstacles = [];
+                this.clouds = [];
+                this.groundPosition = 0;
+                
+                this.init();
+            }
+
+            init() {
+                this.startBtn.addEventListener('click', () => this.startGame());
+                this.restartBtn.addEventListener('click', () => this.restartGame());
+                document.addEventListener('keydown', (e) => {
+                    if (e.code === 'Space' && !this.isGameOver && !this.startScreen.style.display !== 'none') {
+                        e.preventDefault();
+                        this.jump();
+                    }
+                });
+                this.gameContainer.addEventListener('click', () => {
+                    if (!this.isGameOver && this.startScreen.style.display === 'none') {
+                        this.jump();
+                    }
+                });
+            }
+
+            startGame() {
+                this.startScreen.style.display = 'none';
+                this.gameLoop();
+                this.spawnObstacles();
+                this.spawnClouds();
+                this.animateGround();
+                this.scheduleLion();
+            }
+
+            jump() {
+                if (!this.isJumping && !this.isGameOver) {
+                    this.isJumping = true;
+                    this.dinosaur.classList.add('jumping');
+                    
+                    setTimeout(() => {
+                        this.dinosaur.classList.remove('jumping');
+                        this.isJumping = false;
+                    }, 420);
+                }
+            }
+
+            spawnObstacles() {
+                if (this.isGameOver) return;
+                
+                const obstacle = document.createElement('div');
+                const animalTypes = ['animal-elephant', 'animal-dolphin', 'animal-giraffe', 'animal-rhino'];
+                const randomAnimal = animalTypes[Math.floor(Math.random() * animalTypes.length)];
+                obstacle.className = `obstacle ${randomAnimal}`;
+                obstacle.dataset.right = '-50';
+                obstacle.style.right = '-50px';
+                this.gameContainer.appendChild(obstacle);
+                this.obstacles.push(obstacle);
+                
+                const spawnDelay = Math.random() * 2000 + 2000;
+                setTimeout(() => this.spawnObstacles(), spawnDelay);
+            }
+
+            spawnClouds() {
+                if (this.isGameOver) return;
+                
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.style.width = '60px';
+                cloud.style.height = '30px';
+                cloud.style.top = Math.random() * 60 + 'px';
+                cloud.dataset.right = '-100';
+                cloud.style.right = '-100px';
+                this.gameContainer.appendChild(cloud);
+                this.clouds.push(cloud);
+                
+                const spawnDelay = Math.random() * 3500 + 2500;
+                setTimeout(() => this.spawnClouds(), spawnDelay);
+            }
+
+            animateGround() {
+                if (this.isGameOver) return;
+                
+                this.groundPosition -= this.gameSpeed;
+                const ground = document.getElementById('ground');
+                ground.style.transform = `translateX(${this.groundPosition}px)`;
+                
+                if (this.groundPosition <= -800) {
+                    this.groundPosition = 0;
+                }
+                
+                requestAnimationFrame(() => this.animateGround());
+            }
+
+            checkCollision(obstacle) {
+                const dinoRect = this.dinosaur.getBoundingClientRect();
+                const obstacleRect = obstacle.getBoundingClientRect();
+                
+                return !(dinoRect.right < obstacleRect.left || 
+                        dinoRect.left > obstacleRect.right || 
+                        dinoRect.bottom < obstacleRect.top || 
+                        dinoRect.top > obstacleRect.bottom);
+            }
+
+            updateObstacles() {
+                this.obstacles = this.obstacles.filter(obstacle => {
+                    const currentRight = parseFloat(obstacle.dataset.right || '-50');
+                    const nextRight = currentRight + this.gameSpeed;
+                    obstacle.dataset.right = nextRight;
+                    obstacle.style.right = `${nextRight}px`;
+                    
+                    if (this.checkCollision(obstacle)) {
+                        this.gameOver();
+                        return false;
+                    }
+                    
+                    if (nextRight > 850) {
+                        obstacle.remove();
+                        return false;
+                    }
+                    
+                    return true;
+                });
+            }
+
+            updateClouds() {
+                this.clouds = this.clouds.filter(cloud => {
+                    const currentRight = parseFloat(cloud.dataset.right || '-100');
+                    const nextRight = currentRight + this.gameSpeed * 0.5;
+                    cloud.dataset.right = nextRight;
+                    cloud.style.right = `${nextRight}px`;
+                    
+                    if (nextRight > 900) {
+                        cloud.remove();
+                        return false;
+                    }
+                    
+                    return true;
+                });
+            }
+
+            updateScore() {
+                this.score++;
+                this.scoreElement.textContent = `Score: ${this.score}`;
+                
+                if (this.score % 150 === 0) {
+                    this.gameSpeed += 0.25;
+                }
+            }
+
+            gameLoop() {
+                if (this.isGameOver) return;
+                
+                this.updateObstacles();
+                this.updateClouds();
+                this.updateScore();
+                this.checkLionCollision();
+                
+                requestAnimationFrame(() => this.gameLoop());
+            }
+
+            gameOver() {
+                this.isGameOver = true;
+                this.finalScoreElement.textContent = `Score: ${this.score}`;
+                this.clearEntities();
+                this.gameOverScreen.style.display = 'block';
+            }
+
+            restartGame() {
+                this.isGameOver = false;
+                this.isJumping = false;
+                this.score = 0;
+                this.gameSpeed = 3.5;
+                this.groundPosition = 0;
+                
+                this.scoreElement.textContent = 'Score: 0';
+                this.gameOverScreen.style.display = 'none';
+                
+                this.clearEntities();
+                
+                this.gameLoop();
+                this.spawnObstacles();
+                this.spawnClouds();
+                this.animateGround();
+                this.scheduleLion();
+            }
+
+            clearEntities() {
+                this.obstacles.forEach(obstacle => obstacle.remove());
+                this.clouds.forEach(cloud => cloud.remove());
+                this.obstacles = [];
+                this.clouds = [];
+                if (this.lionTimeout) {
+                    clearTimeout(this.lionTimeout);
+                    this.lionTimeout = null;
+                }
+                this.lionElement.style.display = 'none';
+                this.lionElement.style.animation = '';
+                this.lionElement.style.right = '-120px';
+                this.lionElement.dataset.active = 'false';
+            }
+
+            scheduleLion() {
+                this.lionTimeout = setTimeout(() => {
+                    this.lionElement.style.display = 'block';
+                    this.lionElement.dataset.active = 'true';
+                    this.lionElement.style.animation = 'lionChase 8s linear forwards';
+                }, 12000);
+            }
+
+            checkLionCollision() {
+                if (!this.lionElement || this.lionElement.dataset.active !== 'true') return;
+                const lionRect = this.lionElement.getBoundingClientRect();
+                const dinoRect = this.dinosaur.getBoundingClientRect();
+                const overlap = !(dinoRect.right < lionRect.left ||
+                    dinoRect.left > lionRect.right ||
+                    dinoRect.bottom < lionRect.top ||
+                    dinoRect.top > lionRect.bottom);
+                if (overlap) {
+                    this.gameOver();
+                }
+            }
+        }
+
+        const game = new DinosaurGame();
+    </script>
+</body>
+</html>
