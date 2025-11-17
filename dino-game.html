@@ -216,8 +216,9 @@
         }
 
         .animal-fox {
-            background: url('images/fox_obstruction.png') no-repeat center;
-            background-size: contain;
+            background: url('images/—Pngtree—cute cartoon orange fox vector_9140907.png') no-repeat center,
+                        linear-gradient(to bottom, #e8f4f8 0%, #d0e8f0 50%, #b8dce8 100%);
+            background-size: contain, 100% 100%;
             width: 50px;
             height: 40px;
             border-radius: 0;
@@ -229,44 +230,137 @@
             display: none;
         }
 
+        .obstacle-man {
+            background: url('images/—Pngtree—happy man smiling while using_21135445.png') no-repeat center,
+                        linear-gradient(to bottom, #e8f4f8 0%, #d0e8f0 50%, #b8dce8 100%);
+            background-size: contain, 100% 100%;
+            width: 70px;
+            height: 56px;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .obstacle-afro {
+            background: url('images/afro.jpg') no-repeat center,
+                        linear-gradient(to bottom, #e8f4f8 0%, #d0e8f0 50%, #b8dce8 100%);
+            background-size: contain, 100% 100%;
+            width: 65px;
+            height: 52px;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .obstacle-corp {
+            background: url('images/corp.jfif') no-repeat center,
+                        linear-gradient(to bottom, #e8f4f8 0%, #d0e8f0 50%, #b8dce8 100%);
+            background-size: contain, 100% 100%;
+            width: 72px;
+            height: 58px;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .obstacle-lily {
+            background: url('images/lily.avif') no-repeat center,
+                        linear-gradient(to bottom, #e8f4f8 0%, #d0e8f0 50%, #b8dce8 100%);
+            background-size: contain, 100% 100%;
+            width: 60px;
+            height: 48px;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .obstacle-man::before,
+        .obstacle-man::after {
+            display: none;
+        }
+
+        .collectible {
+            position: absolute;
+            bottom: 55px;
+            right: -30px;
+            width: 40px;
+            height: 40px;
+            background: url('images/hing.jfif') no-repeat center;
+            background-size: contain;
+            box-shadow: 0 0 8px rgba(255, 182, 193, 0.6);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .collectible-lily {
+            position: absolute;
+            bottom: 55px;
+            right: -30px;
+            width: 45px;
+            height: 45px;
+            background: url('images/lily.avif') no-repeat center;
+            background-size: contain;
+            border-radius: 0;
+            box-shadow: 0 0 15px rgba(255, 182, 193, 0.9);
+            animation: collectibleFloat 2s ease-in-out infinite;
+        }
+
+        .lily-companion {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('images/lily.avif') no-repeat center;
+            background-size: contain;
+            border-radius: 0;
+            box-shadow: 0 0 10px rgba(255, 182, 193, 0.9);
+            animation: companionFloat 1.5s ease-in-out infinite;
+            display: none;
+            z-index: 15;
+        }
+
+        .collectible-pig {
+            position: absolute;
+            bottom: 55px;
+            right: -30px;
+            width: 42px;
+            height: 42px;
+            background: url('images/pig.jfif') no-repeat center;
+            background-size: contain;
+            border-radius: 0;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.9);
+            animation: collectibleFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes companionFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            50% {
+                transform: translateY(-5px) rotate(5deg);
+            }
+        }
+
+        @keyframes collectibleFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
         #lionEnd {
             position: absolute;
             bottom: 18px;
             right: -120px;
-            width: 80px;
-            height: 60px;
-            background: linear-gradient(to right, #d4a574 0%, #c19660 50%, #b8874c 100%);
-            border-radius: 40px 50px 35px 30px;
-            box-shadow: inset -6px 0 0 rgba(0, 0, 0, 0.3);
+            width: 100px;
+            height: 80px;
+            background: url('images/sheru.png') no-repeat center;
+            background-size: contain;
             display: none;
             animation: lionBounce 0.65s ease-in-out infinite;
+            z-index: 20;
         }
 
-        #lionEnd::before {
-            content: '';
-            position: absolute;
-            top: -24px;
-            left: 26px;
-            width: 40px;
-            height: 40px;
-            background:
-                radial-gradient(circle at 30% 40%, #000000 0 4px, transparent 4px),
-                radial-gradient(circle at 70% 40%, #000000 0 4px, transparent 4px),
-                radial-gradient(circle at 50% 70%, #000000 0 4px, transparent 4px),
-                radial-gradient(circle at 50% 50%, #f3d4a0 0 60%, #b45309 61%, #b45309 100%);
-            border-radius: 50%;
-        }
-
+        #lionEnd::before,
         #lionEnd::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 12px;
-            width: 14px;
-            height: 20px;
-            background: #b45309;
-            border-radius: 8px;
-            box-shadow: 20px 0 0 #b45309, 40px 0 0 #b45309;
+            display: none;
         }
 
         @keyframes lionChase {
@@ -371,6 +465,86 @@
             top: -15px;
             right: 10px;
         }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            transform: rotate(-45deg);
+            animation: heartPop 1s ease-out forwards;
+            z-index: 1000;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes heartPop {
+            0% {
+                transform: rotate(-45deg) scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: rotate(-45deg) scale(1.5);
+                opacity: 1;
+            }
+            100% {
+                transform: rotate(-45deg) translateY(-100px) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        @keyframes gameOverShake {
+            0%, 100% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            25% {
+                transform: translate(-50%, -50%) rotate(-2deg);
+            }
+            75% {
+                transform: translate(-50%, -50%) rotate(2deg);
+            }
+        }
+
+        .game-over-animation {
+            animation: gameOverShake 0.5s ease-in-out;
+        }
+
+        .crying-emoji {
+            position: absolute;
+            font-size: 30px;
+            z-index: 1000;
+            animation: cryFall 1s ease-in forwards;
+            pointer-events: none;
+        }
+
+        @keyframes cryFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(50px) rotate(15deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -405,14 +579,18 @@
                 this.startBtn = document.getElementById('startBtn');
                 this.restartBtn = document.getElementById('restartBtn');
                 this.lionElement = document.getElementById('lionEnd');
+                this.lionElement.dataset.active = 'false';
                 
                 this.isJumping = false;
                 this.isGameOver = false;
                 this.score = 0;
-                this.gameSpeed = 3.5;
+                this.gameSpeed = 4;
                 this.obstacles = [];
                 this.clouds = [];
+                this.collectibles = [];
+                this.lilyCompanion = null;
                 this.groundPosition = 0;
+                this.obstacleIndex = 0;
                 
                 this.init();
             }
@@ -437,6 +615,7 @@
                 this.startScreen.style.display = 'none';
                 this.gameLoop();
                 this.spawnObstacles();
+                this.spawnCollectibles();
                 this.spawnClouds();
                 this.animateGround();
                 this.scheduleLion();
@@ -457,17 +636,87 @@
             spawnObstacles() {
                 if (this.isGameOver) return;
                 
+                // Check if there are too many obstacles already
+                if (this.obstacles.length >= 3) {
+                    setTimeout(() => this.spawnObstacles(), 1000);
+                    return;
+                }
+                
+                // Check for overlap with existing collectibles
+                const collectibles = this.collectibles.filter(col => {
+                    const colRight = parseFloat(col.dataset.right || '-30');
+                    return colRight < 200; // Only check collectibles that are still on screen
+                });
+                
+                if (collectibles.length > 0) {
+                    setTimeout(() => this.spawnObstacles(), 500);
+                    return;
+                }
+                
                 const obstacle = document.createElement('div');
-                const animalTypes = ['animal-elephant', 'animal-dolphin', 'animal-giraffe', 'animal-rhino', 'animal-fox'];
-                const randomAnimal = animalTypes[Math.floor(Math.random() * animalTypes.length)];
+                const animalTypes = ['obstacle-afro', 'obstacle-corp', 'obstacle-man', 'animal-fox'];
+                // Use obstacle index for ordered spawning
+                const randomAnimal = animalTypes[this.obstacleIndex % animalTypes.length];
+                this.obstacleIndex++;
                 obstacle.className = `obstacle ${randomAnimal}`;
-                obstacle.dataset.right = '-50';
-                obstacle.style.right = '-50px';
+                
+                // Stagger spawn position to prevent overlap
+                const staggeredPosition = -50 - (Math.random() * 100);
+                obstacle.dataset.right = staggeredPosition;
+                obstacle.style.right = `${staggeredPosition}px`;
+                
                 this.gameContainer.appendChild(obstacle);
                 this.obstacles.push(obstacle);
                 
                 const spawnDelay = Math.random() * 2000 + 2000;
                 setTimeout(() => this.spawnObstacles(), spawnDelay);
+            }
+
+            spawnCollectibles() {
+                if (this.isGameOver) return;
+                
+                // Check if there are too many collectibles already
+                if (this.collectibles.length >= 2) {
+                    setTimeout(() => this.spawnCollectibles(), 1000);
+                    return;
+                }
+                
+                // Check for overlap with existing obstacles
+                const obstacles = this.obstacles.filter(obs => {
+                    const obsRight = parseFloat(obs.dataset.right || '-50');
+                    return obsRight < 200; // Only check obstacles that are still on screen
+                });
+                
+                if (obstacles.length > 0) {
+                    setTimeout(() => this.spawnCollectibles(), 500);
+                    return;
+                }
+                
+                const collectible = document.createElement('div');
+                const collectibleTypes = ['collectible', 'collectible-lily', 'collectible-pig'];
+                // Priority: hing (50%), lily (30%), pig (20%)
+                const random = Math.random();
+                let randomType;
+                if (random < 0.5) {
+                    randomType = 'collectible';
+                } else if (random < 0.8) {
+                    randomType = 'collectible-lily';
+                } else {
+                    randomType = 'collectible-pig';
+                }
+                collectible.className = randomType;
+                
+                // Stagger spawn position to prevent overlap
+                const staggeredPosition = -30 - (Math.random() * 80);
+                collectible.dataset.right = staggeredPosition;
+                collectible.dataset.type = randomType;
+                collectible.style.right = `${staggeredPosition}px`;
+                
+                this.gameContainer.appendChild(collectible);
+                this.collectibles.push(collectible);
+                
+                const spawnDelay = Math.random() * 2500 + 2500; // More frequent spawns
+                setTimeout(() => this.spawnCollectibles(), spawnDelay);
             }
 
             spawnClouds() {
@@ -485,6 +734,23 @@
                 
                 const spawnDelay = Math.random() * 3500 + 2500;
                 setTimeout(() => this.spawnClouds(), spawnDelay);
+            }
+
+            spawnSheruObstacle() {
+                const sheru = document.createElement('div');
+                sheru.className = 'obstacle sheru-obstacle';
+                sheru.style.position = 'absolute';
+                sheru.style.bottom = '18px';
+                sheru.style.right = '-120px';
+                sheru.style.width = '100px';
+                sheru.style.height = '80px';
+                sheru.style.background = 'url("images/sheru.png") no-repeat center';
+                sheru.style.backgroundSize = 'contain';
+                sheru.style.zIndex = '20';
+                sheru.dataset.right = '-120';
+                
+                this.gameContainer.appendChild(sheru);
+                this.obstacles.push(sheru);
             }
 
             animateGround() {
@@ -518,13 +784,51 @@
                     obstacle.dataset.right = nextRight;
                     obstacle.style.right = `${nextRight}px`;
                     
-                    if (this.checkCollision(obstacle)) {
-                        this.gameOver();
+                    if (this.checkCollision(obstacle) && !this.isGameOver) {
+                        this.createCryingEmojis();
+                        obstacle.remove(); // Remove obstacle immediately
+                        setTimeout(() => this.gameOver(), 500);
                         return false;
                     }
                     
                     if (nextRight > 850) {
                         obstacle.remove();
+                        return false;
+                    }
+                    
+                    return true;
+                });
+            }
+
+            updateCollectibles() {
+                this.collectibles = this.collectibles.filter(collectible => {
+                    const currentRight = parseFloat(collectible.dataset.right || '-30');
+                    const nextRight = currentRight + this.gameSpeed;
+                    collectible.dataset.right = nextRight;
+                    collectible.style.right = `${nextRight}px`;
+                    
+                    if (this.checkCollision(collectible)) {
+                        const collectibleType = collectible.dataset.type;
+                        
+                        if (collectibleType === 'collectible-lily') {
+                            // Create lily companion that follows the bear
+                            this.createLilyCompanion();
+                        } else if (collectibleType === 'collectible-pig') {
+                            // Pig collectible - give bonus points
+                            this.score += 75;
+                            this.scoreElement.textContent = `Score: ${this.score}`;
+                        } else {
+                            // Regular hing collectible - give points
+                            this.score += 50;
+                            this.scoreElement.textContent = `Score: ${this.score}`;
+                        }
+                        
+                        collectible.remove();
+                        return false;
+                    }
+                    
+                    if (nextRight > 850) {
+                        collectible.remove();
                         return false;
                     }
                     
@@ -553,7 +857,18 @@
                 this.scoreElement.textContent = `Score: ${this.score}`;
                 
                 if (this.score % 150 === 0) {
-                    this.gameSpeed += 0.25;
+                    this.gameSpeed += 0.2;
+                }
+                
+                // Spawn Sheru as obstacle at 2997 points
+                if (this.score === 2997) {
+                    this.spawnSheruObstacle();
+                }
+                
+                // At 2990 points, polar bear automatically collides with sheru
+                if (this.score >= 2990) {
+                    this.polarBearCatchesSheru();
+                    return;
                 }
             }
 
@@ -561,8 +876,10 @@
                 if (this.isGameOver) return;
                 
                 this.updateObstacles();
+                this.updateCollectibles();
                 this.updateClouds();
                 this.updateScore();
+                this.updateLilyCompanion();
                 this.checkLionCollision();
                 
                 requestAnimationFrame(() => this.gameLoop());
@@ -575,20 +892,93 @@
                 this.gameOverScreen.style.display = 'block';
             }
 
+            createCryingEmojis() {
+                const emojiCount = 5;
+                const emojis = ['😢', '😭', '💔', '😿', '😖'];
+                
+                for (let i = 0; i < emojiCount; i++) {
+                    setTimeout(() => {
+                        const emoji = document.createElement('div');
+                        emoji.className = 'crying-emoji';
+                        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                        
+                        // Position around the polar bear
+                        const bearX = 50 + (Math.random() - 0.5) * 60;
+                        const bearY = 30;
+                        
+                        emoji.style.left = `${bearX}px`;
+                        emoji.style.bottom = `${bearY}px`;
+                        
+                        this.gameContainer.appendChild(emoji);
+                        
+                        // Remove emoji after animation
+                        setTimeout(() => emoji.remove(), 1000);
+                    }, i * 150);
+                }
+            }
+
+            createHeartExplosion() {
+                const heartCount = 15;
+                const gameRect = this.gameContainer.getBoundingClientRect();
+                
+                for (let i = 0; i < heartCount; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.className = 'heart';
+                        
+                        // Random position around the polar bear
+                        const bearX = 50 + Math.random() * 100;
+                        const bearY = 20 + Math.random() * 100;
+                        
+                        heart.style.left = `${bearX}px`;
+                        heart.style.bottom = `${bearY}px`;
+                        
+                        // Random colors
+                        const colors = ['#ff6b6b', '#ff8787', '#ff5252', '#ff1744', '#d32f2f'];
+                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                        heart.style.background = randomColor;
+                        
+                        // Update pseudo-elements color
+                        const style = document.createElement('style');
+                        style.textContent = `
+                            .heart:nth-child(${i + 1})::before,
+                            .heart:nth-child(${i + 1})::after {
+                                background: ${randomColor};
+                            }
+                        `;
+                        document.head.appendChild(style);
+                        
+                        this.gameContainer.appendChild(heart);
+                        
+                        // Remove heart after animation
+                        setTimeout(() => {
+                            heart.remove();
+                            style.remove();
+                        }, 1000);
+                    }, i * 100);
+                }
+            }
+
             restartGame() {
                 this.isGameOver = false;
                 this.isJumping = false;
                 this.score = 0;
-                this.gameSpeed = 3.5;
+                this.gameSpeed = 4;
                 this.groundPosition = 0;
+                this.obstacleIndex = 0;
                 
                 this.scoreElement.textContent = 'Score: 0';
                 this.gameOverScreen.style.display = 'none';
                 
                 this.clearEntities();
                 
+                // Reset lion state
+                this.lionElement.style.display = 'none';
+                this.lionElement.dataset.active = 'false';
+                
                 this.gameLoop();
                 this.spawnObstacles();
+                this.spawnCollectibles();
                 this.spawnClouds();
                 this.animateGround();
                 this.scheduleLion();
@@ -597,24 +987,55 @@
             clearEntities() {
                 this.obstacles.forEach(obstacle => obstacle.remove());
                 this.clouds.forEach(cloud => cloud.remove());
+                this.collectibles.forEach(collectible => collectible.remove());
+                if (this.lilyCompanion) {
+                    this.lilyCompanion.remove();
+                    this.lilyCompanion = null;
+                }
                 this.obstacles = [];
                 this.clouds = [];
-                if (this.lionTimeout) {
-                    clearTimeout(this.lionTimeout);
-                    this.lionTimeout = null;
-                }
-                this.lionElement.style.display = 'none';
-                this.lionElement.style.animation = '';
-                this.lionElement.style.right = '-120px';
-                this.lionElement.dataset.active = 'false';
+                this.collectibles = [];
+            }
+
+            createLilyCompanion() {
+                if (this.lilyCompanion) return; // Only allow one companion
+                
+                this.lilyCompanion = document.createElement('div');
+                this.lilyCompanion.className = 'lily-companion';
+                this.lilyCompanion.style.display = 'block';
+                this.gameContainer.appendChild(this.lilyCompanion);
+            }
+
+            updateLilyCompanion() {
+                if (!this.lilyCompanion) return;
+                
+                const bearRect = this.dinosaur.getBoundingClientRect();
+                const containerRect = this.gameContainer.getBoundingClientRect();
+                
+                // Position lily in the bear's "hands" area - upper body region
+                const bearLeft = bearRect.left - containerRect.left;
+                const bearBottom = containerRect.bottom - bearRect.bottom;
+                
+                // Place lily in front of bear, slightly above center
+                this.lilyCompanion.style.left = `${bearLeft + 25}px`;
+                this.lilyCompanion.style.bottom = `${bearBottom + 35}px`;
+                this.lilyCompanion.style.display = 'block';
             }
 
             scheduleLion() {
-                this.lionTimeout = setTimeout(() => {
-                    this.lionElement.style.display = 'block';
-                    this.lionElement.dataset.active = 'true';
-                    this.lionElement.style.animation = 'lionChase 8s linear forwards';
-                }, 12000);
+                // Sheru appears at 2989 points as final point before game ends
+                const checkForLion = () => {
+                    if (this.score >= 2989 && !this.lionElement.dataset.active) {
+                        console.log('Sheru should appear now! Score:', this.score);
+                        this.lionElement.style.display = 'block';
+                        this.lionElement.dataset.active = 'true';
+                        this.lionElement.style.animation = 'lionChase 8s linear forwards';
+                        console.log('Sheru element:', this.lionElement);
+                    } else if (!this.isGameOver && this.score < 2989) {
+                        setTimeout(checkForLion, 100);
+                    }
+                };
+                checkForLion();
             }
 
             checkLionCollision() {
@@ -626,8 +1047,80 @@
                     dinoRect.bottom < lionRect.top ||
                     dinoRect.top > lionRect.bottom);
                 if (overlap) {
-                    this.gameOver();
+                    this.createHeartExplosion();
+                    this.gameOverScreen.classList.add('game-over-animation');
+                    setTimeout(() => {
+                        this.gameOver();
+                        this.gameOverScreen.classList.remove('game-over-animation');
+                    }, 500);
                 }
+            }
+
+            polarBearCatchesSheru() {
+                // Find sheru obstacle
+                const sheruObstacle = this.obstacles.find(obs => obs.classList.contains('sheru-obstacle'));
+                
+                if (!sheruObstacle) {
+                    return;
+                }
+                
+                // Make polar bear run towards and catch sheru
+                const dinosaur = this.dinosaur;
+                
+                // Animate polar bear running to sheru
+                dinosaur.style.transition = 'all 2s ease-in-out';
+                dinosaur.style.left = '850px';
+                
+                setTimeout(() => {
+                    // Create heart explosion when polar bear catches sheru
+                    this.createHeartExplosion();
+                    
+                    // Create HAPPY BIRTHDAY text
+                    const birthdayText = document.createElement('div');
+                    birthdayText.textContent = 'HAPPY BIRTHDAY';
+                    birthdayText.style.position = 'absolute';
+                    birthdayText.style.top = '25%';
+                    birthdayText.style.left = '50%';
+                    birthdayText.style.transform = 'translate(-50%, -50%)';
+                    birthdayText.style.fontSize = '48px';
+                    birthdayText.style.fontWeight = 'bold';
+                    birthdayText.style.color = '#ff6b6b';
+                    birthdayText.style.textShadow = '2px 2px 4px rgba(0,0,0,0.3)';
+                    birthdayText.style.zIndex = '100';
+                    birthdayText.style.animation = 'birthdayPulse 2s ease-in-out';
+                    this.gameContainer.appendChild(birthdayText);
+                    
+                    // Create cake emoji
+                    const cake = document.createElement('div');
+                    cake.textContent = '🎂';
+                    cake.style.position = 'absolute';
+                    cake.style.top = '75%';
+                    cake.style.left = '50%';
+                    cake.style.transform = 'translate(-50%, -50%)';
+                    cake.style.fontSize = '72px';
+                    cake.style.zIndex = '100';
+                    cake.style.animation = 'cakeBounce 1s ease-in-out infinite';
+                    this.gameContainer.appendChild(cake);
+                    
+                    // Add animations for birthday text and cake
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes birthdayPulse {
+                            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+                            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+                            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+                        }
+                        @keyframes cakeBounce {
+                            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+                            50% { transform: translate(-50%, -50%) translateY(-20px); }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    // Stop the game but don't show game over
+                    this.isGameOver = true;
+                    clearInterval(this.scoreInterval);
+                }, 2000);
             }
         }
 
